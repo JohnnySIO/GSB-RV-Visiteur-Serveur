@@ -271,6 +271,17 @@ CREATE TABLE Presentation (
   PRIMARY KEY (pre_code)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE Motif (
+  mo_code varchar(4) NOT NULL,
+  mo_libelle varchar(20) NOT NULL,
+  PRIMARY KEY (mo_code)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  
+INSERT INTO Motif VAlUES
+    ( 'm895' , 'Périodicité' ),
+    ( 'm896' , 'Nouveauté' ),
+    ( 'm897' , 'Actualité' );
+
 
 CREATE TABLE RapportVisite (
   vis_matricule varchar(20) NOT NULL DEFAULT '',
@@ -280,17 +291,20 @@ CREATE TABLE RapportVisite (
   pra_num int(11) DEFAULT NULL,
   date_redaction date NOT NULL,
   rap_coefConfiance int(15) NOT NULL,
+  mo_code varchar(4) NOT NULL,
   PRIMARY KEY (vis_matricule,rap_num)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO RapportVisite VALUES
-	( 'a131' , 1 , '2018-03-01' , 'RAS' , 22 ,'2018-03-01', 1 ) ,
-	( 'a131' , 2 , '2018-04-02' , 'RAS' , 22 ,'2018-04-02', 2 ) ,
-	( 'a131' , 3 , '2018-04-03' , 'RAS' , 18 ,'2018-04-03', 3 ) ,
-	( 'a131' , 4 , '2018-05-10' , 'RAS' , 22 ,'2018-05-10', 4 ) ,
-	( 'a131' , 5 , '2018-05-21' , 'RAS' , 18 ,'2018-05-21', 5 ) ;
+	( 'a131' , 1 , '2018-03-01' , 'RAS' , 22 ,'2018-03-01', 1 , 'm895' ) ,
+	( 'a131' , 2 , '2018-04-02' , 'RAS' , 22 ,'2018-04-02', 2 , 'm895' ) ,
+	( 'a131' , 3 , '2018-04-03' , 'RAS' , 18 ,'2018-04-03', 3 , 'm896' ) ,
+	( 'a131' , 4 , '2018-05-10' , 'RAS' , 22 ,'2018-05-10', 4 , 'm897' ) ,
+	( 'a131' , 5 , '2018-05-21' , 'RAS' , 18 ,'2018-05-21', 5 , 'm897' ) ;
 
 
+
+    
 CREATE TABLE Realiser (
   ac_num int(11) NOT NULL DEFAULT '0',
   vis_matricule varchar(20) NOT NULL DEFAULT '',
@@ -634,6 +648,7 @@ ALTER TABLE  Praticien ADD CONSTRAINT  FK_PRATICIEN_TYPE_PRATICIEN FOREIGN KEY(t
  
 ALTER TABLE RapportVisite ADD CONSTRAINT  FK_RAPPORT_VISITE_VISITEUR FOREIGN KEY(vis_matricule) REFERENCES Visiteur(vis_matricule) ;
 ALTER TABLE RapportVisite ADD CONSTRAINT  FK_RAPPORT_VISITE_PRATICIEN FOREIGN KEY(pra_num) REFERENCES Praticien(pra_num) ;
+ALTER TABLE RapportVisite ADD CONSTRAINT  FK_RAPPORT_VISITE_MOTIF FOREIGN KEY(mo_code) REFERENCES Motif(mo_code) ;
  
 ALTER TABLE Realiser ADD CONSTRAINT  FK_REALISER_ACTIVITE_COMPL FOREIGN KEY(ac_num) REFERENCES ActiviteCompl(ac_num) ;
 ALTER TABLE Realiser ADD CONSTRAINT  FK_REALISER_VISITEUR FOREIGN KEY(vis_matricule) REFERENCES Visiteur(vis_matricule) ;

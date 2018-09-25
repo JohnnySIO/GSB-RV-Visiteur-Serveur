@@ -67,6 +67,7 @@ def getRapportsVisite( matricule , mois , annee ) :
 						p.pra_prenom ,
 						p.pra_cp ,
 						p.pra_ville
+						rv.rap_coefConfiance
 					from RapportVisite as rv
 					inner join Praticien as p
 					on p.pra_num = rv.pra_num
@@ -90,6 +91,7 @@ def getRapportsVisite( matricule , mois , annee ) :
 			unRapport[ 'pra_prenom' ] = unEnregistrement[ 4 ]
 			unRapport[ 'pra_cp' ] = unEnregistrement[ 5 ]
 			unRapport[ 'pra_ville' ] = unEnregistrement[ 5 ]
+			unRapport[ 'rap_coefConfiance' ] = unEnregistrement[ 6 ]
 			rapports.append( unRapport )
 			
 		curseur.close()
@@ -180,6 +182,32 @@ def getMedicaments() :
 			
 		curseur.close()
 		return medicaments
+		
+	except :
+		return None
+		
+def getMotifs() :
+	
+	try :
+		curseur = getConnexionBD().cursor()
+		requete = '''
+					select *
+					from Motif
+				'''
+		
+		curseur.execute( requete , () )
+		
+		enregistrements = curseur.fetchall()
+		
+		motifs = []
+		for unEnregistrement in enregistrements :
+			unMotif = {}
+			unMotif[ 'mo_code' ] = unEnregistrement[ 0 ]
+			unMotif[ 'mo_libelle' ] = unEnregistrement[ 1 ]
+			motifs.append( unMotif )
+			
+		curseur.close()
+		return motifs
 		
 	except :
 		return None
