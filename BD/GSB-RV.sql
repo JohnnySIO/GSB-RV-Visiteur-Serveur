@@ -278,15 +278,17 @@ CREATE TABLE RapportVisite (
   rap_date_visite date NOT NULL,
   rap_bilan varchar(510) DEFAULT '',
   pra_num int(11) DEFAULT NULL,
+  date_redaction date DEFAULT NULL,
+  rap_coefConfiance int(15) DEFAULT NULL,
   PRIMARY KEY (vis_matricule,rap_num)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO RapportVisite VALUES
-	( 'a131' , 1 , '2018-03-01' , 'RAS' , 22 ) ,
-	( 'a131' , 2 , '2018-04-02' , 'RAS' , 22 ) ,
-	( 'a131' , 3 , '2018-04-03' , 'RAS' , 18 ) ,
-	( 'a131' , 4 , '2018-05-10' , 'RAS' , 22 ) ,
-	( 'a131' , 5 , '2018-05-21' , 'RAS' , 18 ) ;
+	( 'a131' , 1 , '2018-03-01' , 'RAS' , 22 ,"","" ) ,
+	( 'a131' , 2 , '2018-04-02' , 'RAS' , 22 ,"","") ,
+	( 'a131' , 3 , '2018-04-03' , 'RAS' , 18 ,"","") ,
+	( 'a131' , 4 , '2018-05-10' , 'RAS' , 22 ,"","") ,
+	( 'a131' , 5 , '2018-05-21' , 'RAS' , 18 ,"","") ;
 
 
 CREATE TABLE Realiser (
