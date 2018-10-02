@@ -66,7 +66,8 @@ def getRapportsVisite( matricule , mois , annee ) :
 						p.pra_nom ,
 						p.pra_prenom ,
 						p.pra_cp ,
-						p.pra_ville
+						p.pra_ville,
+						rv.rap_date_redaction,
 						rv.rap_coefConfiance
 					from RapportVisite as rv
 					inner join Praticien as p
@@ -91,7 +92,9 @@ def getRapportsVisite( matricule , mois , annee ) :
 			unRapport[ 'pra_prenom' ] = unEnregistrement[ 4 ]
 			unRapport[ 'pra_cp' ] = unEnregistrement[ 5 ]
 			unRapport[ 'pra_ville' ] = unEnregistrement[ 5 ]
+			
 			unRapport[ 'rap_coefConfiance' ] = unEnregistrement[ 6 ]
+			unRapport[ 'rap_date_redaction' ] = '%04d-%02d-%02d' % ( unEnregistrement[ 7 ].year , unEnregistrement[ 7 ].month , unEnregistrement[ 7 ].day )
 			rapports.append( unRapport )
 			
 		curseur.close()
@@ -339,5 +342,4 @@ if __name__ == '__main__' :
 		for uneOffre in getEchantillonsOfferts( 'a131' , 1 ) :
 			print uneOffre
 		print
-		
 		

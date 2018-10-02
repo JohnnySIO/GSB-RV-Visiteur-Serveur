@@ -286,21 +286,21 @@ INSERT INTO Motif VAlUES
 CREATE TABLE RapportVisite (
   vis_matricule varchar(20) NOT NULL DEFAULT '',
   rap_num int(11) NOT NULL DEFAULT '0',
-  rap_date_visite date NOT NULL,
+  rap_date_visite date DEFAULT NULL,
   rap_bilan varchar(510) DEFAULT '',
+  rap_date_redaction date DEFAULT NULL,
+  rap_coefConfiance int(15) DEFAULT NULL,
   pra_num int(11) DEFAULT NULL,
-  date_redaction date NOT NULL,
-  rap_coefConfiance int(15) NOT NULL,
-  mo_code varchar(4) NOT NULL,
+  mo_code varchar(4) DEFAULT NULL,
   PRIMARY KEY (vis_matricule,rap_num)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO RapportVisite VALUES
-	( 'a131' , 1 , '2018-03-01' , 'RAS' , 22 ,'2018-03-01', 1 , 'm895' ) ,
-	( 'a131' , 2 , '2018-04-02' , 'RAS' , 22 ,'2018-04-02', 2 , 'm895' ) ,
-	( 'a131' , 3 , '2018-04-03' , 'RAS' , 18 ,'2018-04-03', 3 , 'm896' ) ,
-	( 'a131' , 4 , '2018-05-10' , 'RAS' , 22 ,'2018-05-10', 4 , 'm897' ) ,
-	( 'a131' , 5 , '2018-05-21' , 'RAS' , 18 ,'2018-05-21', 5 , 'm897' ) ;
+	( 'a131' , 1 , '2018-03-01' , 'RAS' , '2018-03-01', 1 , 22, 'm895' ) ,
+	( 'a131' , 2 , '2018-04-02' , 'RAS' , '2018-04-02', 2 , 22 , 'm895' ) ,
+	( 'a131' , 3 , '2018-04-03' , 'RAS' , '2018-04-03', 3 , 18 , 'm896' ) ,
+	( 'a131' , 4 , '2018-05-10' , 'RAS' , '2018-05-10', 4 , 22 , 'm897' ) ,
+	( 'a131' , 5 , '2018-05-21' , 'RAS' , '2018-05-21', 5 , 18 , 'm897' ) ;
 
 
 
